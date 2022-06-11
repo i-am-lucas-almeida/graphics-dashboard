@@ -1,0 +1,17 @@
+@import "../variables.css";
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    padding: 0 3rem;
+    padding-bottom: 10rem;
+}
+
+@media(max-width: 1200px) {
+
+    .container{
+        display: block;
+    }
+
+}
