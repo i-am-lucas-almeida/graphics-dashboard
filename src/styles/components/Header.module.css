@@ -1,0 +1,26 @@
+@import "../variables.css";
+
+.header{
+    width: 100%;
+    margin-bottom: 5rem;
+}
+
+.header__nav{  
+    background-color: var(--mid-purple);
+    height: 7rem;
+    margin-bottom: 4rem;
+}
+
+.header__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+}
+
+.header__title > h1{
+    margin-bottom: 1rem;
+    color: var(--dark-purple);
+    font-size: 3rem;
+    font-weight: 700;
+}
