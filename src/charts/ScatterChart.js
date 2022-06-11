@@ -1,5 +1,7 @@
 import Chart from 'react-apexcharts';
 
+import DashboardCard from '../components/DashboardCard';
+
 const ScatterGraphic = () => {
 
     const colors = {
@@ -56,9 +58,9 @@ const ScatterGraphic = () => {
         subtitle: {
             text: 'Scatter',
             align: 'left',
-            margin: 5,
+            margin: 0,
             offsetX: 0,
-            offsetY: 30,
+            offsetY: 15,
             floating: false,
             style: {
                 fontSize: '2rem',
@@ -71,13 +73,17 @@ const ScatterGraphic = () => {
 
     return (
 
-        <Chart
-            options={options}
-            type="scatter"
-            series={series}
-            width="500px"
-            height="350px"
-        />
+        <DashboardCard>
+
+            <Chart
+                options={options}
+                type="scatter"
+                series={series}
+                width="100%"
+                height="100%"
+            />
+
+        </DashboardCard>
 
     );
 
