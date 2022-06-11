@@ -1,4 +1,5 @@
 import styles from "../styles/components/Header.module.css";
+import FilterButton from "./FilterButton";
 
 const Header = () => {
 
@@ -17,6 +18,8 @@ const Header = () => {
                     <p>Desafio Técnico Frontend</p>
 
                 </div>
+
+                <FilterButton/>
 
             </div>
 

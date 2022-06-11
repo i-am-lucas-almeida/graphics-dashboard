@@ -1,0 +1,26 @@
+@import "../variables.css";
+
+.filter_button{
+    background-color: var(--dark-purple);
+    display: flex;
+    place-items: center;
+    padding: 1rem 1.5rem;
+    color: var(--white);
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    border: none;
+    border-radius: .8rem;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.filter_button > img{
+    width: 3rem;
+    padding-right: .5rem;
+}
+
+.filter_button:hover{
+    transform: scale(1.02);
+    opacity: .95;
+}
