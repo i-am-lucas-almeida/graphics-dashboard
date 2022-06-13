@@ -1,20 +1,48 @@
+import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 
 import DashboardCard from "../components/DashboardCard";
 
 const BarGraphic = () => {
 
+    const [categories, setCategories] = useState([]);
+    const [values, setValues] = useState([]);
+
+    useEffect(() => {
+
+        const getData = async () => {
+
+            const url = "data/barChart.json";
+
+            try {
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                setCategories(data.items.map((item) => item.country));
+                setValues(data.items.map((item) => item.temperature));
+
+            } catch (error) {
+
+                console.log(error);
+
+            }
+        }
+
+        getData();
+
+    }, []);
+
     const colors = {
         backgColor: '#FFF',
         fontColor: '#000',
-        barsColor: '#8ED471',
         titleColor: '#5D405C'
     }
 
     const series = [
         {
             name: "Temperatura em Fahrenheit",
-            data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+            data: values && values
         }
     ];
 
@@ -26,8 +54,7 @@ const BarGraphic = () => {
             foreColor: colors.fontColor
         },
         xaxis: {
-            categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-                'United States', 'China', 'Germany'],
+            categories: categories && categories
         },
         plotOptions: {
             bar: {
@@ -38,7 +65,6 @@ const BarGraphic = () => {
                 enabled: false,
             }
         },
-        colors: [colors.barsColor],
         subtitle: {
             text: 'Barras',
             align: 'left',
