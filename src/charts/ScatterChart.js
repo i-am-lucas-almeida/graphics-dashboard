@@ -1,37 +1,10 @@
 import Chart from 'react-apexcharts';
 import { useState, useEffect } from 'react';
 
+import { useFetch } from '../hook/useFetch';
 import DashboardCard from "../components/DashboardCard";
 
 const ScatterGraphic = () => {
-
-    const [names, setNames] = useState([]);
-    const [values, setValues] = useState([]);
-
-    useEffect(() => {
-
-        const getData = async () => {
-
-            const url = "data/scatterChart.json";
-
-            try {
-
-                const response = await fetch(url);
-                const data = await response.json();
-
-                setNames(data.items.map((item) => item.sample));
-                setValues(data.items.map((item) => item.results));
-
-            } catch (error) {
-
-                console.log(error);
-
-            }
-        };
-
-        getData();
-
-    }, []);
 
     const colors = {
         backgColor: '#FFF',
@@ -39,11 +12,25 @@ const ScatterGraphic = () => {
         titleColor: '#5D405C'
     }
 
+    const [names, setNames] = useState([]);
+    const [values, setValues] = useState([]);
+
+    const url = "data/scatterChart.json";
+
+    const { data } = useFetch(url);
+
+    useEffect(() => {
+
+        setNames(data && data.map((item) => item.sample));
+        setValues(data && data.map((item) => item.results));
+
+    }, [data]);
+
     const series = [];
 
     const dataSeries = () => {
 
-        for (let i = 0; i < names.length; i++) {
+        for (let i = 0; i < data.length; i++) {
 
             const obj = {
                 name: names[i],
@@ -100,7 +87,9 @@ const ScatterGraphic = () => {
                 fontFamily: 'Montserrat',
                 color: colors.titleColor
             },
+
         }
+
     };
 
     return (
