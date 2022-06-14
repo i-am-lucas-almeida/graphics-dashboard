@@ -1,37 +1,10 @@
 import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 
+import { useFetch } from '../hook/useFetch';
 import DashboardCard from "../components/DashboardCard";
 
 const BarGraphic = () => {
-
-    const [categories, setCategories] = useState([]);
-    const [values, setValues] = useState([]);
-
-    useEffect(() => {
-
-        const getData = async () => {
-
-            const url = "data/barChart.json";
-
-            try {
-
-                const response = await fetch(url);
-                const data = await response.json();
-
-                setCategories(data.items.map((item) => item.country));
-                setValues(data.items.map((item) => item.temperature));
-
-            } catch (error) {
-
-                console.log(error);
-
-            }
-        }
-
-        getData();
-
-    }, []);
 
     const colors = {
         backgColor: '#FFF',
@@ -39,23 +12,42 @@ const BarGraphic = () => {
         titleColor: '#5D405C'
     }
 
+    const [categories, setCategories] = useState([]);
+    const [values, setValues] = useState([]);
+
+    const url = "data/barChart.json";
+
+    const { data } = useFetch(url);
+
+    useEffect(() => {
+
+        setCategories(data && data.map((item) => item.country));
+        setValues(data && data.map((item) => item.temperature));
+
+    }, [data]);
+
     const series = [
+
         {
             name: "Temperatura em Fahrenheit",
             data: values && values
         }
+
     ];
 
     const options = {
+
         chart: {
             type: "bar",
             background: colors.backgColor,
             fontFamily: 'Montserrat',
             foreColor: colors.fontColor
         },
+
         xaxis: {
             categories: categories && categories
         },
+
         plotOptions: {
             bar: {
                 borderRadius: 3,
@@ -65,6 +57,7 @@ const BarGraphic = () => {
                 enabled: false,
             }
         },
+
         subtitle: {
             text: 'Barras',
             align: 'left',
@@ -78,7 +71,9 @@ const BarGraphic = () => {
                 fontFamily: 'Montserrat',
                 color: colors.titleColor
             },
+
         }
+        
     };
 
     return (
