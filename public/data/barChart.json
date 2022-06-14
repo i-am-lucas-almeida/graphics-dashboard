@@ -1,0 +1,41 @@
+{
+    "items": [
+
+        {
+            "id": 1,
+            "country": "Alemanha",
+            "temperature": 1380
+        },
+
+        {
+            "id": 2,
+            "country": "Canadá",
+            "temperature": 430
+        },
+
+        {
+            "id": 3,
+            "country": "China",
+            "temperature": 1200
+        },
+
+        {
+            "id": 4,
+            "country": "Estados Unidos",
+            "temperature": 1100
+        },
+
+        {
+            "id": 5,
+            "country": "França",
+            "temperature": 580
+        },
+
+        {
+            "id": 6,
+            "country": "Itália",
+            "temperature": 540
+        }
+
+    ]
+}
