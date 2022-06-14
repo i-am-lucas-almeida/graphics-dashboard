@@ -1,6 +1,6 @@
 @import "../variables.css";
 
-.filter_button{
+.filter_button {
     background-color: var(--dark-purple);
     display: flex;
     place-items: center;
@@ -15,12 +15,25 @@
     transition: .3s ease;
 }
 
-.filter_button > img{
+.filter_button > img {
     width: 3rem;
     padding-right: .5rem;
 }
 
-.filter_button:hover{
+.filter_button:hover {
     transform: scale(1.02);
     opacity: .95;
+}
+
+@media(max-width: 600px) {
+
+    .filter_button > span{
+        display: none;
+    }
+
+    .filter_button > img {
+        width: 2.5rem;
+        padding: 0;
+    }
+
 }
